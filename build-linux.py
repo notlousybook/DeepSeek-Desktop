@@ -35,7 +35,7 @@ def backup_and_swap():
 
 def restore_files():
     """Restores original Windows files from backups."""
-    print("sz Restoring original Windows files...")
+    print("Restoring original Windows files...")
     for _, target_file in FILE_MAPPING.items():
         backup_path = target_file + BACKUP_EXTENSION
         if os.path.exists(backup_path):
