@@ -132,6 +132,8 @@
 
 ## 🔧 Advanced Usage
 
+> Currently only functional on Windows
+
 > Currently only functional on windows
 
 ```bash
