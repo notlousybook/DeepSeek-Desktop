@@ -106,7 +106,7 @@
   * **Ctrl+Shift+U**: Manually trigger an update check (Works in both dev and production)
   * **Ctrl+Shift+L**: Open the logs viewer window (Works in both dev and production)
   * Screenshots are automatically saved to the `assets/` folder with timestamps
-  * For Linux build it may or may NOT work depending upon your distro
+  * For the Linux build, it may or may not work depending on your distro
 
 * 📊 **Comprehensive Logging System**
   * **Always Active**: Logs are recorded from the moment the app starts, even when the log viewer is closed
