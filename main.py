@@ -261,14 +261,26 @@ def apply_dark_titlebar_delayed(window):
 
 def inject_js(window):
     try:
+        # Determine the base path based on whether we're running from source or frozen
+        if getattr(sys, 'frozen', False):
+            # Running from PyInstaller bundle
+            base_path = sys._MEIPASS
+        else:
+            # Running from source
+            base_path = os.path.dirname(os.path.abspath(__file__))
+        
+        # Construct the full path to inject.js
+        inject_path = os.path.join(base_path, 'injection', 'inject.js')
+        
         # Read injection script
-        with open('injection/inject.js', 'r') as f:
+        with open(inject_path, 'r', encoding='utf-8') as f:
             js_code = f.read()
         
         # Inject JavaScript
         window.evaluate_js(js_code)
+        _log(f"JavaScript injected from: {inject_path}")
     except Exception as e:
-        print(f"Error injecting JavaScript: {e}")
+        _log(f"Error injecting JavaScript: {e}")
 
 def on_window_loaded(window):
     """Called when window is loaded"""
@@ -431,8 +443,14 @@ class API:
     def get_version(self):
         """Read version from version.txt"""
         try:
-            if os.path.exists('version.txt'):
-                with open('version.txt', 'r') as f:
+            if getattr(sys, 'frozen', False):
+                base_path = sys._MEIPASS
+            else:
+                base_path = os.path.dirname(os.path.abspath(__file__))
+            
+            version_path = os.path.join(base_path, 'version.txt')
+            if os.path.exists(version_path):
+                with open(version_path, 'r') as f:
                     return f.read().strip()
         except Exception as e:
             _log(f"Error reading version.txt: {e}")
@@ -720,5 +738,6 @@ def main():
     
     app = DeepSeekApp(release_mode=release_mode)
     app.run()
+
 if __name__ == "__main__":
     main()
