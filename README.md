@@ -1,16 +1,16 @@
 ## 🚀 DeepSeek Desktop
 
-![CI](https://img.shields.io/github/actions/workflow/status/LousyBook94/DeepSeek-Desktop/ci.yml?style=flat&label=CI)
-![Version](https://img.shields.io/github/v/release/LousyBook94/DeepSeek-Desktop?style=flat&color=blue)
-![Language](https://img.shields.io/github/languages/top/LousyBook94/DeepSeek-Desktop?style=flat&color=yellow)
-![License](https://img.shields.io/github/license/LousyBook94/DeepSeek-Desktop?style=flat&color=green)
+![CI](https://img.shields.io/github/actions/workflow/status/notlousybook/DeepSeek-Desktop/ci.yml?style=flat&label=CI)
+![Version](https://img.shields.io/github/v/release/notlousybook/DeepSeek-Desktop?style=flat&color=blue)
+![Language](https://img.shields.io/github/languages/top/notlousybook/DeepSeek-Desktop?style=flat&color=yellow)
+![License](https://img.shields.io/github/license/notlousybook/DeepSeek-Desktop?style=flat&color=green)
 
 > Your ultimate desktop companion for DeepSeek Chat — now smoother, prettier, and packed with magic ✨
 
 **⚠️ Note:** This project is still under active development. Expect more crazy features soon!
-> Sorry i've been away for a while, but now i'm back working on the project, did some epic improvements and fixed old bugs!
+> Updated to version 0.1.70 added linux build support.
 
-> Versions less than 0.1.69 have a horrendously buggy updator and is non gui based, please update if you're on older versions.
+> Added Linux build support and AppImage
 
 > Bugs or suggestions? Drop them in [issues](https://github.com/notlousybook/DeepSeek-Desktop/issues) 💀🔥
 
@@ -34,11 +34,25 @@
 
 ## 💾 Installation
 
+### For Windows
+
 1. Head to the [Releases page](https://github.com/notlousybook/DeepSeek-Desktop/releases)
 2. Download `DeepSeekChat-windows.zip`
 3. Extract the files
 4. Run `DeepSeekChat.exe`
 5. The app now features an **Integrated Auto-Updater**! When a new version is released, you'll see a notification directly in the app to update and restart seamlessly. 🚀
+
+---
+
+### For Linux
+
+1. Head to the [Releases page](https://github.com/notlousybook/DeepSeek-Desktop/releases)
+2. Download `DeepSeek_Desktop.AppImage`
+3. Make it executable:
+   ```bash
+   chmod +x DeepSeek_Desktop.AppImage
+   ```
+4. Run `DeepSeek_Desktop.AppImage`
 
 ---
 
@@ -71,6 +85,7 @@
   * **In-UI Notifications**: Sleek glassmorphic banner when a new version is available
   * **One-Click Update**: Restart and update directly from the app
   * **Manual Check**: Press **Ctrl+Shift+U** to trigger a check anytime
+  * **Linux Build**: Auto-update is currently **not supported** on Linux. Updates are done by downloading a new AppImage.
 
 * 🔄 **Real-time Sync & Navigation**
   * Frosted glass refresh button with auto-hide
@@ -90,6 +105,7 @@
   * **Ctrl+Shift+U**: Manually trigger an update check (Works in both dev and production)
   * **Ctrl+Shift+L**: Open the logs viewer window (Works in both dev and production)
   * Screenshots are automatically saved to the `assets/` folder with timestamps
+  * For the Linux build, it may or may not work depending on your distro
 
 * 📊 **Comprehensive Logging System**
   * **Always Active**: Logs are recorded from the moment the app starts, even when the log viewer is closed
@@ -115,6 +131,10 @@
 
 ## 🔧 Advanced Usage
 
+> Currently only functional on Windows
+
+> Currently only functional on windows
+
 ```bash
 # Force dark titlebar
 DeepSeekChat.exe --dark-titlebar
@@ -132,7 +152,7 @@ DeepSeekChat.exe --release
 # Press Ctrl + Shift + U
 ```
 
-By default, the titlebar **matches your Windows theme** automatically 🌙☀️
+By default, the titlebar **matches your Desktop theme** automatically 🌙☀️
 
 ---
 
@@ -141,7 +161,7 @@ By default, the titlebar **matches your Windows theme** automatically 🌙☀️
 * [x] Dark titlebar ✅
 * [ ] Custom themes
 * [x] Keyboard shortcuts (Screenshot: Ctrl+Shift+S, Update: Ctrl+Shift+U) ✅
-* [ ] Cross-platform builds (Mac/Linux)
+* [x] Cross-platform builds (Linux) ✅
 * [ ] System tray integration
 
 ---
