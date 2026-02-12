@@ -187,6 +187,13 @@ By default, the titlebar **matches your Desktop theme** automatically 🌙☀️
                 </a>
             </td>
             <td align="center">
+                <a href="https://github.com/ang-or-five">
+                    <img src="https://avatars.githubusercontent.com/u/99081841?v=4" width="100;" alt="ang-or-five"/>
+                    <br />
+                    <sub><b>ang</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://github.com/notlousybook">
                     <img src="https://avatars.githubusercontent.com/u/197344995?v=4" width="100;" alt="notlousybook"/>
                     <br />
