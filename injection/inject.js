@@ -490,7 +490,7 @@ const VersionManager = {
             if (el.dataset.dsUpdated) return;
             el.innerHTML = `
                 <div style="opacity:0.6; font-size:12px; color: #888; display: flex; align-items: center; gap: 8px;">
-                    <span>Made by <a href="https://github.com/LousyBook94" target="_blank" style="color:inherit; text-decoration:underline;">LousyBook01</a></span>
+                    <span>Made by <a href="https://github.com/notlousybook" target="_blank" style="color:inherit; text-decoration:underline;">LousyBook01</a></span>
                     <span style="opacity: 0.4;">|</span>
                     <span>Powered by <a href="https://deepseek.com" target="_blank" style="color:inherit; text-decoration:underline;">DeepSeek</a></span>
                     <span style="opacity: 0.4;">|</span>
@@ -525,8 +525,8 @@ const GreetingManager = {
     // Configuration
     config: {
         github: {
-            apiUrl: 'https://api.github.com/repos/LousyBook94/DeepSeek-Desktop/contents/greetings.txt',
-            rawUrl: 'https://raw.githubusercontent.com/LousyBook94/DeepSeek-Desktop/refs/heads/master/greetings.txt'
+apiUrl: 'https://api.github.com/repos/notlousybook/DeepSeek-Desktop/contents/greetings.txt',
+            rawUrl: 'https://raw.githubusercontent.com/notlousybook/DeepSeek-Desktop/refs/heads/master/greetings.txt'
         },
         cache: {
             key: 'deepseek-greetings-cache',

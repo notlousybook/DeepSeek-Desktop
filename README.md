@@ -1,9 +1,9 @@
 ## 🚀 DeepSeek Desktop
 
-![CI](https://img.shields.io/github/actions/workflow/status/LousyBook94/DeepSeek-Desktop/ci.yml?style=flat&label=CI)
-![Version](https://img.shields.io/github/v/release/LousyBook94/DeepSeek-Desktop?style=flat&color=blue)
-![Language](https://img.shields.io/github/languages/top/LousyBook94/DeepSeek-Desktop?style=flat&color=yellow)
-![License](https://img.shields.io/github/license/LousyBook94/DeepSeek-Desktop?style=flat&color=green)
+![CI](https://img.shields.io/github/actions/workflow/status/notlousybook/DeepSeek-Desktop/ci.yml?style=flat&label=CI)
+![Version](https://img.shields.io/github/v/release/notlousybook/DeepSeek-Desktop?style=flat&color=blue)
+![Language](https://img.shields.io/github/languages/top/notlousybook/DeepSeek-Desktop?style=flat&color=yellow)
+![License](https://img.shields.io/github/license/notlousybook/DeepSeek-Desktop?style=flat&color=green)
 
 > Your ultimate desktop companion for DeepSeek Chat — now smoother, prettier, and packed with magic ✨
 
@@ -48,7 +48,6 @@
 
 1. Head to the [Releases page](https://github.com/notlousybook/DeepSeek-Desktop/releases)
 2. Download `DeepSeek_Desktop.AppImage`
-3. 2. Download `DeepSeek_Desktop.AppImage`
 3. Make it executable:
    ```bash
    chmod +x DeepSeek_Desktop.AppImage

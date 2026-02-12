@@ -2,22 +2,6 @@ name: Release Build
 
 on: workflow_dispatch
 
-env:
-  VERSION: "0.1.69"
-  RELEASE_BODY: |
-    🚀 V__VERSION__ released yayyyyyy!!!! ✨
-    
-    ### What's new
-    - 🔧 **FINALLY fixed Unicode encoding errors in auto-updater!**
-    - 🐛 Resolved charmap codec crashes when Unicode characters appear in GitHub API responses
-    - 🔧 Enhanced subprocess launch with proper UTF-8 environment inheritance
-    - 🛡️ Added comprehensive Unicode sanitization for all release info fields
-    - 📝 Strengthened console initialization and logging with UTF-8 support
-    
-    ### Technical Details
-    - Fixed issue where updater subprocess doesn't properly inherit UTF-8 encoding when launched from built executable
-    - Closes #21 - Thanks to @vanja-san for the help!
-
 jobs:
   build-and-release:
     runs-on: windows-latest
@@ -27,6 +11,25 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
+    - name: Read version from version.txt
+      id: get_version
+      shell: pwsh
+      run: |
+        $version = Get-Content -Path version.txt -Raw
+        $version = $version.Trim()
+        echo "VERSION=$version" >> $env:GITHUB_ENV
+        echo "Detected version: $version"
+
+    - name: Read release notes
+      id: get_release_notes
+      shell: pwsh
+      run: |
+        $releaseNotes = Get-Content -Path RELEASE_NOTES.md -Raw
+        $releaseNotes = $releaseNotes -replace "__VERSION__", $env:VERSION
+        echo "RELEASE_NOTES<<EOF" >> $env:GITHUB_ENV
+        echo "$releaseNotes" >> $env:GITHUB_ENV
+        echo "EOF" >> $env:GITHUB_ENV
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -48,8 +51,9 @@ jobs:
         Compress-Archive -Path .\built\* -DestinationPath .\zipped\DeepSeekChat-windows.zip -Force
     - name: Prepare release body
       id: prepare_release
+      shell: pwsh
       run: |
-        $releaseBody = "${{ env.RELEASE_BODY }}" -replace "__VERSION__", "${{ env.VERSION }}"
+        $releaseBody = $env:RELEASE_NOTES -replace "__VERSION__", $env:VERSION
         Add-Content -Path $env:GITHUB_ENV -Value "RELEASE_BODY<<EOF"
         Add-Content -Path $env:GITHUB_ENV -Value $releaseBody
         Add-Content -Path $env:GITHUB_ENV -Value "EOF"
