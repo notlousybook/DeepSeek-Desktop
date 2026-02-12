@@ -1,159 +1,150 @@
-## 🚀 DeepSeek Desktop
+# DeepSeek Desktop
 
-![CI](https://img.shields.io/github/actions/workflow/status/LousyBook94/DeepSeek-Desktop/ci.yml?style=flat&label=CI)
-![Version](https://img.shields.io/github/v/release/LousyBook94/DeepSeek-Desktop?style=flat&color=blue)
-![Language](https://img.shields.io/github/languages/top/LousyBook94/DeepSeek-Desktop?style=flat&color=yellow)
-![License](https://img.shields.io/github/license/LousyBook94/DeepSeek-Desktop?style=flat&color=green)
+![CI](https://img.shields.io/github/actions/workflow/status/notlousybook/DeepSeek-Desktop/ci.yml?style=flat-square&label=CI&color=8899A6&logo=github )
+![Version](https://img.shields.io/github/v/release/notlousybook/DeepSeek-Desktop?style=flat-square&color=4A90E2&logo=github )
+![Language](https://img.shields.io/github/languages/top/notlousybook/DeepSeek-Desktop?style=flat-square&color=F7B731&logo=python )
+![License](https://img.shields.io/github/license/notlousybook/DeepSeek-Desktop?style=flat-square&color=7ED321&logo=open-source-initiative )
 
-> Your ultimate desktop companion for DeepSeek Chat — now smoother, prettier, and packed with magic ✨
+> Lightweight, feature‑packed DeepSeek app built with PyWebView, no Electron bloat. Includes all features of the most‑starred builds plus custom UI polish, dynamic greetings, animations, auto‑updater, enhanced Markdown rendering, and a injection js with lots of features :] <3
 
-**⚠️ Note:** This project is still under active development. Expect more crazy features soon!
-> Sorry i've been away for a while, but now i'm back working on the project, did some epic improvements and fixed old bugs!
+**Note:** This project is actively being worked on, so expect new things to land regularly!
 
-> Versions less than 0.1.69 have a horrendously buggy updator and is non gui based, please update if you're on older versions.
+> **New in v0.1.70:** Linux build support and AppImage! 🐧
 
-> Bugs or suggestions? Drop them in [issues](https://github.com/notlousybook/DeepSeek-Desktop/issues) 💀🔥
+> Bugs or suggestions? [Open an issue](https://github.com/notlousybook/DeepSeek-Desktop/issues) — I'd love to hear from you.
 
 ![DeepSeek Desktop Preview](assets/preview.png)
 
 ---
 
-## 📖 Table of Contents
+## Table of Contents
 
-- [💾 Installation](#-installation)
-- [✨ Features](#-features)
-- [📸 Screenshots](#-screenshots)
-- [🔧 Advanced Usage](#-advanced-usage)
-- [🔮 Future Plans](#-future-plans)
-- [👋 Connect with Me](#-connect-with-me)
-- [🤘 Cool Contributors](#-cool-contributors)
-- [🔧 Bots that help the project](#bots-that-help-the-project)
-- [⚡ Attribution](#-attribution)
+- [Installation](#installation)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Advanced Usage](#advanced-usage)
+- [Future Plans](#future-plans)
+- [Connect with Me](#connect-with-me)
+- [Contributors](#contributors)
+- [Bots](#bots)
+- [Attribution](#attribution)
 
 ---
 
-## 💾 Installation
+## Installation
 
-1. Head to the [Releases page](https://github.com/notlousybook/DeepSeek-Desktop/releases)
+### Windows
+
+1. Grab the latest release from the [Releases page](https://github.com/notlousybook/DeepSeek-Desktop/releases)
 2. Download `DeepSeekChat-windows.zip`
-3. Extract the files
+3. Extract it somewhere nice
 4. Run `DeepSeekChat.exe`
-5. The app now features an **Integrated Auto-Updater**! When a new version is released, you'll see a notification directly in the app to update and restart seamlessly. 🚀
+
+The app will keep itself updated automatically — you'll get a friendly notification when there's something new :3
 
 ---
 
-## ✨ Features
+### Linux
 
-**DeepSeek Desktop** comes loaded with enhancements to make your chat experience 💯:
+1. Grab the latest release from the [Releases page](https://github.com/notlousybook/DeepSeek-Desktop/releases)
+2. Download `DeepSeek_Desktop.AppImage`
+3. Make it executable:
+   ```bash
+   chmod +x DeepSeek_Desktop.AppImage
+   ```
+4. Run it:
+   ```bash
+   ./DeepSeek_Desktop.AppImage
+   ```
 
-* 🎨 **Custom UI Elements**
-  * Custom footer text
-  * Forced **Inter font** throughout
-
-* ⏰ **Dynamic Greetings**
-  * Good Morning/Afternoon/Evening messages
-  * **500+ unique greetings** with random display
-  * Smooth fade transitions and typing animations
-
-* ✨ **Animations**
-  * Typing animation with sphere cursor
-  * Self-healing UI via MutationObservers
-
-* 🧹 **Clean Interface**
-  * Removed cluttered UI elements
-  * Persistent styling across navigation
-
-* 🌙 **Dark Titlebar Support**
-  * Matches your Windows system theme automatically
-  * Manual override available
-
-* 🔃 **Integrated Auto Updater**
-  * **In-UI Notifications**: Sleek glassmorphic banner when a new version is available
-  * **One-Click Update**: Restart and update directly from the app
-  * **Manual Check**: Press **Ctrl+Shift+U** to trigger a check anytime
-
-* 🔄 **Real-time Sync & Navigation**
-  * Frosted glass refresh button with auto-hide
-  * URL path preserved on refresh
-  * Smooth loading indicators & popups
-  * Welcome tooltip for first-time guidance
-  
-* 📝 **Enhanced Markdown Rendering**
-  * Full markdown support in messages
-  * System theme detection for code blocks
-  * JetBrains Mono for code readability
-  * XSS protection via DOMPurify
-  * Proper spacing & inline code handling
-
-* 📸 **Developer & Utility Tools**
-  * **Ctrl+Shift+S**: Instantly capture a screenshot of the window (Development mode only)
-  * **Ctrl+Shift+U**: Manually trigger an update check (Works in both dev and production)
-  * **Ctrl+Shift+L**: Open the logs viewer window (Works in both dev and production)
-  * Screenshots are automatically saved to the `assets/` folder with timestamps
-
-* 📊 **Comprehensive Logging System**
-  * **Always Active**: Logs are recorded from the moment the app starts, even when the log viewer is closed
-  * **Timestamped Entries**: Every log includes a precise timestamp for easy debugging
-  * **Smart Management**: Automatically keeps the last 1000 log entries to manage memory usage
-  * **Log Viewer Features**:
-    - Dark theme CustomTkinter interface
-    - Real-time log display with timestamps
-    - Refresh, Copy All, Save to File, and Clear buttons
-    - Scrollable text area for easy navigation
-  * **Export Options**: Save logs to timestamped text files or copy to clipboard
+> **Note:** Auto-updater is currently not supported on Linux — just download the new AppImage when updates drop!
 
 ---
 
-## 📸 Screenshots
+## Features
 
-![DeepSeek Desktop Preview](assets/1.png)
-![DeepSeek Desktop Preview](assets/2.png)
-![DeepSeek Desktop Preview](assets/3.png)
-![DeepSeek Desktop Preview](assets/4.png)
+**The Nice Stuff**
+- Clean, calm interface with custom footer text
+- Lovely Inter font throughout
+- Dynamic greetings that change based on time of day (500+ variations, so you won't see the same one too often)
+- Smooth fade transitions and typing animations
+- Clutter-free design that stays consistent as you navigate
 
+**Fits Your System**
+- Titlebar matches your system theme automatically (dark or light)
+- Want to force it? You can do that too
 
+**Stays Up to Date**
+- Glassmorphic update notifications when new versions drop (Windows only for now)
+- One-click to update and restart
+- Or press `Ctrl+Shift+U` to check manually anytime
 
-## 🔧 Advanced Usage
+**For the Curious**
+- `Ctrl+Shift+S` — snap a screenshot (dev mode only, saves to `assets/`)
+- `Ctrl+Shift+L` — peek at the logs
+- `Ctrl+Shift+U` — check for updates
+
+**Reads & Writes Well**
+- Full markdown support in chats
+- Code blocks that respect your system theme
+- JetBrains Mono for code (easy on the eyes)
+- XSS protection built in
+
+**Logging That Actually Helps**
+- Logs everything from startup, even when the viewer is closed
+- Keeps the last 1000 entries so memory stays happy
+- Dark-themed viewer with timestamps, search, and export options
+
+---
+
+## Screenshots
+
+![Main Interface](assets/1.png)
+![Chat View](assets/2.png)
+![Settings](assets/3.png)
+![Dark Mode](assets/4.png)
+
+---
+
+## Advanced Usage
+
+> Currently only functional on Windows
 
 ```bash
-# Force dark titlebar
+# Prefer dark mode?
 DeepSeekChat.exe --dark-titlebar
 
-# Force light titlebar
+# Prefer light mode?
 DeepSeekChat.exe --light-titlebar
 
-# Run in release mode (disable debug tools)
+# Running it for real (disables debug shortcuts)
 DeepSeekChat.exe --release
-
-# Take a screenshot (Development mode only)
-# Press Ctrl + Shift + S
-
-# Check for updates manually
-# Press Ctrl + Shift + U
 ```
 
-By default, the titlebar **matches your Windows theme** automatically 🌙☀️
+By default, it'll just follow your system theme.
 
 ---
 
-## 🔮 Future Plans
+## Future Plans
 
-* [x] Dark titlebar ✅
-* [ ] Custom themes
-* [x] Keyboard shortcuts (Screenshot: Ctrl+Shift+S, Update: Ctrl+Shift+U) ✅
-* [ ] Cross-platform builds (Mac/Linux)
-* [ ] System tray integration
-
----
-
-## 👋 Connect with Me
-
-* [YouTube](https://www.youtube.com/channel/UCBNE8MNvq1XppUmpAs20m4w)
-* [GitHub](https://github.com/notlousybook)
+- [x] Dark titlebar support
+- [x] Keyboard shortcuts
+- [x] Linux builds
+- [ ] Custom themes (pick your own colors!)
+- [ ] System tray integration
 
 ---
 
-## 🤘 Cool Contributors
+## Connect with Me
+
+- [YouTube](https://www.youtube.com/channel/UCBNE8MNvq1XppUmpAs20m4w)
+- [GitHub](https://github.com/notlousybook)
+
+---
+
+## Contributors
+
+Made with care by these lovely people:
 
 <!-- readme: collaborators,contributors -start -->
 <table>
@@ -167,17 +158,24 @@ By default, the titlebar **matches your Windows theme** automatically 🌙☀️
                 </a>
             </td>
             <td align="center">
+                <a href="https://github.com/ang-or-five">
+                    <img src="https://avatars.githubusercontent.com/u/99081841?v=4" width="100;" alt="ang-or-five"/>
+                    <br />
+                    <sub><b>ang</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://github.com/notlousybook">
                     <img src="https://avatars.githubusercontent.com/u/197344995?v=4" width="100;" alt="notlousybook"/>
                     <br />
-                    <sub><b>▷『 løµsʏ₿◌□₭ ▯↿ 』◀    (^◕.◕^)</b></sub>
+                    <sub><b>▷『 løµsʏ₿◌□₭ ▯↿ 』◀ (^◕.◕^)</b></sub>
                 </a>
             </td>
             <td align="center">
                 <a href="https://github.com/dwip-the-dev">
                     <img src="https://avatars.githubusercontent.com/u/212593294?v=4" width="100;" alt="dwip-the-dev"/>
                     <br />
-                    <sub><b>Dwip Biswas </b></sub>
+                    <sub><b>Dwip Biswas</b></sub>
                 </a>
             </td>
 		</tr>
@@ -185,7 +183,11 @@ By default, the titlebar **matches your Windows theme** automatically 🌙☀️
 </table>
 <!-- readme: collaborators,contributors -end -->
 
-## 🔧Bots that help the project
+---
+
+## Bots
+
+These automated helpers keep things running smoothly:
 
 <!-- readme: bots -start -->
 <table>
@@ -219,7 +221,8 @@ By default, the titlebar **matches your Windows theme** automatically 🌙☀️
 
 ---
 
-## ⚡ Attribution
+## Attribution
 
-* Icons by [Icons8](https://icons8.com)
-* Powered by [DeepSeek](https://deepseek.com)
+- Icons by [Icons8](https://icons8.com)
+- Built on top of [DeepSeek](https://deepseek.com)
+
