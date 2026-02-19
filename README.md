@@ -1,39 +1,36 @@
 # DeepSeek Desktop
 
-![CI](https://img.shields.io/github/actions/workflow/status/notlousybook/DeepSeek-Desktop/ci.yml?style=flat-square&label=CI&color=8899A6&logo=github )
-![Version](https://img.shields.io/github/v/release/notlousybook/DeepSeek-Desktop?style=flat-square&color=4A90E2&logo=github )
-![Language](https://img.shields.io/github/languages/top/notlousybook/DeepSeek-Desktop?style=flat-square&color=F7B731&logo=python )
-![License](https://img.shields.io/github/license/notlousybook/DeepSeek-Desktop?style=flat-square&color=7ED321&logo=open-source-initiative )
+[![CI](https://img.shields.io/github/actions/workflow/status/LousyBook94/DeepSeek-Desktop/ci.yml?style=flat&label=CI)](https://github.com/LousyBook94/DeepSeek-Desktop/actions)
+[![Version](https://img.shields.io/github/v/release/LousyBook94/DeepSeek-Desktop?style=flat&color=blue)](https://github.com/LousyBook94/DeepSeek-Desktop/releases)
+[![Language](https://img.shields.io/github/languages/top/LousyBook94/DeepSeek-Desktop?style=flat&color=yellow)](https://github.com/LousyBook94/DeepSeek-Desktop)
+[![License](https://img.shields.io/github/license/LousyBook94/DeepSeek-Desktop?style=flat&color=green)](LICENSE)
 
-> Lightweight, feature‑packed DeepSeek app built with PyWebView, no Electron bloat. Includes all features of the most‑starred builds plus custom UI polish, dynamic greetings, animations, auto‑updater, enhanced Markdown rendering, and a injection js with lots of features :] <3
+A cozy desktop wrapper for DeepSeek Chat — smoother, prettier, and nice to use :3
 
-**Note:** This project is actively being worked on, so expect new things to land regularly!
-
-> **New in v0.1.70:** Linux build support and AppImage! 🐧
-
-> Bugs or suggestions? [Open an issue](https://github.com/notlousybook/DeepSeek-Desktop/issues) — I'd love to hear from you.
+> **Heads up!** This project is actively being worked on, so expect new things to land regularly.
+> 
+> If you're on a version older than 0.1.69, please update — the old updater was horrendously buggy (no GUI, pretty broken). Much better now!
+>
+> Found a bug or have an idea? [Open an issue](https://github.com/notlousybook/DeepSeek-Desktop/issues) — I'd love to hear from you.
 
 ![DeepSeek Desktop Preview](assets/preview.png)
 
 ---
 
-## Table of Contents
+## What's Inside
 
 - [Installation](#installation)
 - [Features](#features)
 - [Screenshots](#screenshots)
-- [Advanced Usage](#advanced-usage)
-- [Future Plans](#future-plans)
-- [Connect with Me](#connect-with-me)
+- [Tips & Tricks](#tips--tricks)
+- [What's Coming](#whats-coming)
 - [Contributors](#contributors)
 - [Bots](#bots)
-- [Attribution](#attribution)
+- [Credits](#credits)
 
 ---
 
 ## Installation
-
-### Windows
 
 1. Grab the latest release from the [Releases page](https://github.com/notlousybook/DeepSeek-Desktop/releases)
 2. Download `DeepSeekChat-windows.zip`
@@ -41,23 +38,6 @@
 4. Run `DeepSeekChat.exe`
 
 The app will keep itself updated automatically — you'll get a friendly notification when there's something new :3
-
----
-
-### Linux
-
-1. Grab the latest release from the [Releases page](https://github.com/notlousybook/DeepSeek-Desktop/releases)
-2. Download `DeepSeek_Desktop.AppImage`
-3. Make it executable:
-   ```bash
-   chmod +x DeepSeek_Desktop.AppImage
-   ```
-4. Run it:
-   ```bash
-   ./DeepSeek_Desktop.AppImage
-   ```
-
-> **Note:** Auto-updater is currently not supported on Linux — just download the new AppImage when updates drop!
 
 ---
 
@@ -71,11 +51,11 @@ The app will keep itself updated automatically — you'll get a friendly notific
 - Clutter-free design that stays consistent as you navigate
 
 **Fits Your System**
-- Titlebar matches your system theme automatically (dark or light)
+- Titlebar matches your Windows theme automatically (dark or light)
 - Want to force it? You can do that too
 
 **Stays Up to Date**
-- Glassmorphic update notifications when new versions drop (Windows only for now)
+- Glassmorphic update notifications when new versions drop
 - One-click to update and restart
 - Or press `Ctrl+Shift+U` to check manually anytime
 
@@ -106,9 +86,7 @@ The app will keep itself updated automatically — you'll get a friendly notific
 
 ---
 
-## Advanced Usage
-
-> Currently only functional on Windows
+## Tips & Tricks
 
 ```bash
 # Prefer dark mode?
@@ -121,24 +99,17 @@ DeepSeekChat.exe --light-titlebar
 DeepSeekChat.exe --release
 ```
 
-By default, it'll just follow your system theme.
+By default, it'll just follow your Windows theme.
 
 ---
 
-## Future Plans
+## What's Coming
 
 - [x] Dark titlebar support
 - [x] Keyboard shortcuts
-- [x] Linux builds
 - [ ] Custom themes (pick your own colors!)
+- [ ] macOS and Linux builds
 - [ ] System tray integration
-
----
-
-## Connect with Me
-
-- [YouTube](https://www.youtube.com/channel/UCBNE8MNvq1XppUmpAs20m4w)
-- [GitHub](https://github.com/notlousybook)
 
 ---
 
@@ -148,38 +119,31 @@ Made with care by these lovely people:
 
 <!-- readme: collaborators,contributors -start -->
 <table>
-	<tbody>
-		<tr>
-            <td align="center">
-                <a href="https://github.com/vanja-san">
-                    <img src="https://avatars.githubusercontent.com/u/7201687?v=4" width="100;" alt="vanja-san"/>
-                    <br />
-                    <sub><b>Ioann</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/ang-or-five">
-                    <img src="https://avatars.githubusercontent.com/u/99081841?v=4" width="100;" alt="ang-or-five"/>
-                    <br />
-                    <sub><b>ang</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/notlousybook">
-                    <img src="https://avatars.githubusercontent.com/u/197344995?v=4" width="100;" alt="notlousybook"/>
-                    <br />
-                    <sub><b>▷『 løµsʏ₿◌□₭ ▯↿ 』◀ (^◕.◕^)</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/dwip-the-dev">
-                    <img src="https://avatars.githubusercontent.com/u/212593294?v=4" width="100;" alt="dwip-the-dev"/>
-                    <br />
-                    <sub><b>Dwip Biswas</b></sub>
-                </a>
-            </td>
-		</tr>
-	<tbody>
+<tbody>
+<tr>
+<td align="center">
+<a href="https://github.com/vanja-san">
+<img src="https://avatars.githubusercontent.com/u/7201687?v=4" width="100;" alt="vanja-san"/>
+<br />
+<sub><b>Ioann</b></sub>
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/notlousybook">
+<img src="https://avatars.githubusercontent.com/u/197344995?v=4" width="100;" alt="notlousybook"/>
+<br />
+<sub><b>▷『 løµsʏ₿◌□₭ ▯↿ 』◀ (^◕.◕^)</b></sub>
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/dwip-the-dev">
+<img src="https://avatars.githubusercontent.com/u/212593294?v=4" width="100;" alt="dwip-the-dev"/>
+<br />
+<sub><b>Dwip Biswas</b></sub>
+</a>
+</td>
+</tr>
+</tbody>
 </table>
 <!-- readme: collaborators,contributors -end -->
 
@@ -191,38 +155,37 @@ These automated helpers keep things running smoothly:
 
 <!-- readme: bots -start -->
 <table>
-	<tbody>
-		<tr>
-            <td align="center">
-                <a href="https://github.com/mentatbot[bot]">
-                    <img src="https://avatars.githubusercontent.com/in/837875?v=4" width="100;" alt="mentatbot[bot]"/>
-                    <br />
-                    <sub><b>mentatbot[bot]</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/github-actions[bot]">
-                    <img src="https://avatars.githubusercontent.com/in/15368?v=4" width="100;" alt="github-actions[bot]"/>
-                    <br />
-                    <sub><b>github-actions[bot]</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/google-labs-jules[bot]">
-                    <img src="https://avatars.githubusercontent.com/in/842251?v=4" width="100;" alt="google-labs-jules[bot]"/>
-                    <br />
-                    <sub><b>google-labs-jules[bot]</b></sub>
-                </a>
-            </td>
-		</tr>
-	<tbody>
+<tbody>
+<tr>
+<td align="center">
+<a href="https://github.com/mentatbot">
+<img src="https://avatars.githubusercontent.com/in/837875?v=4" width="100;" alt="mentatbot"/>
+<br />
+<sub><b>mentatbot</b></sub>
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/github-actions">
+<img src="https://avatars.githubusercontent.com/in/15368?v=4" width="100;" alt="github-actions"/>
+<br />
+<sub><b>github-actions</b></sub>
+</a>
+</td>
+<td align="center">
+<a href="https://github.com/google-labs-jules">
+<img src="https://avatars.githubusercontent.com/in/842251?v=4" width="100;" alt="google-labs-jules"/>
+<br />
+<sub><b>google-labs-jules</b></sub>
+</a>
+</td>
+</tr>
+</tbody>
 </table>
 <!-- readme: bots -end -->
 
 ---
 
-## Attribution
+## Credits
 
 - Icons by [Icons8](https://icons8.com)
 - Built on top of [DeepSeek](https://deepseek.com)
-
