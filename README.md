@@ -119,31 +119,38 @@ Made with care by these lovely people:
 
 <!-- readme: collaborators,contributors -start -->
 <table>
-<tbody>
-<tr>
-<td align="center">
-<a href="https://github.com/vanja-san">
-<img src="https://avatars.githubusercontent.com/u/7201687?v=4" width="100;" alt="vanja-san"/>
-<br />
-<sub><b>Ioann</b></sub>
-</a>
-</td>
-<td align="center">
-<a href="https://github.com/notlousybook">
-<img src="https://avatars.githubusercontent.com/u/197344995?v=4" width="100;" alt="notlousybook"/>
-<br />
-<sub><b>▷『 løµsʏ₿◌□₭ ▯↿ 』◀ (^◕.◕^)</b></sub>
-</a>
-</td>
-<td align="center">
-<a href="https://github.com/dwip-the-dev">
-<img src="https://avatars.githubusercontent.com/u/212593294?v=4" width="100;" alt="dwip-the-dev"/>
-<br />
-<sub><b>Dwip Biswas</b></sub>
-</a>
-</td>
-</tr>
-</tbody>
+	<tbody>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/vanja-san">
+                    <img src="https://avatars.githubusercontent.com/u/7201687?v=4" width="100;" alt="vanja-san"/>
+                    <br />
+                    <sub><b>Ioann</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/ang-or-five">
+                    <img src="https://avatars.githubusercontent.com/u/99081841?v=4" width="100;" alt="ang-or-five"/>
+                    <br />
+                    <sub><b>ang</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/notlousybook">
+                    <img src="https://avatars.githubusercontent.com/u/197344995?v=4" width="100;" alt="notlousybook"/>
+                    <br />
+                    <sub><b>▷『 løµsʏ₿◌□₭ ▯↿ 』◀ (^◕.◕^)</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/dwip-the-dev">
+                    <img src="https://avatars.githubusercontent.com/u/212593294?v=4" width="100;" alt="dwip-the-dev"/>
+                    <br />
+                    <sub><b>Dwip Biswas</b></sub>
+                </a>
+            </td>
+		</tr>
+	<tbody>
 </table>
 <!-- readme: collaborators,contributors -end -->
 
@@ -155,31 +162,31 @@ These automated helpers keep things running smoothly:
 
 <!-- readme: bots -start -->
 <table>
-<tbody>
-<tr>
-<td align="center">
-<a href="https://github.com/mentatbot">
-<img src="https://avatars.githubusercontent.com/in/837875?v=4" width="100;" alt="mentatbot"/>
-<br />
-<sub><b>mentatbot</b></sub>
-</a>
-</td>
-<td align="center">
-<a href="https://github.com/github-actions">
-<img src="https://avatars.githubusercontent.com/in/15368?v=4" width="100;" alt="github-actions"/>
-<br />
-<sub><b>github-actions</b></sub>
-</a>
-</td>
-<td align="center">
-<a href="https://github.com/google-labs-jules">
-<img src="https://avatars.githubusercontent.com/in/842251?v=4" width="100;" alt="google-labs-jules"/>
-<br />
-<sub><b>google-labs-jules</b></sub>
-</a>
-</td>
-</tr>
-</tbody>
+	<tbody>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/mentatbot[bot]">
+                    <img src="https://avatars.githubusercontent.com/in/837875?v=4" width="100;" alt="mentatbot[bot]"/>
+                    <br />
+                    <sub><b>mentatbot[bot]</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/github-actions[bot]">
+                    <img src="https://avatars.githubusercontent.com/in/15368?v=4" width="100;" alt="github-actions[bot]"/>
+                    <br />
+                    <sub><b>github-actions[bot]</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/google-labs-jules[bot]">
+                    <img src="https://avatars.githubusercontent.com/in/842251?v=4" width="100;" alt="google-labs-jules[bot]"/>
+                    <br />
+                    <sub><b>google-labs-jules[bot]</b></sub>
+                </a>
+            </td>
+		</tr>
+	<tbody>
 </table>
 <!-- readme: bots -end -->
 
