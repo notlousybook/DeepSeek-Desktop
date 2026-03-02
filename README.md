@@ -45,14 +45,16 @@ If the app opens but shows errors (or no window), install WebKit/GTK runtime pac
 
 ```bash
 # Debian/Ubuntu
-sudo apt install libgtk-3-0 libwebkit2gtk-4.1-0 xdg-utils policykit-1
+sudo apt install --no-install-recommends libgtk-3-0 libwebkit2gtk-4.1-0 xdg-utils
 
 # Fedora
-sudo dnf install gtk3 webkit2gtk4.1 xdg-utils polkit
+sudo dnf install gtk3 webkit2gtk4.1 xdg-utils
 
 # Arch
-sudo pacman -S gtk3 webkit2gtk xdg-utils polkit
+sudo pacman -S gtk3 webkit2gtk xdg-utils
 ```
+> Optional: install PolicyKit (`policykit-1` / `polkit`) only if your distro or updater flow needs elevation prompts.
+
 
 ---
 

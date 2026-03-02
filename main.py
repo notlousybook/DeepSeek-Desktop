@@ -85,7 +85,7 @@ def _linux_dependency_help_messages():
 
     messages = []
     missing_commands = []
-    for cmd in ["xdg-open", "pkexec"]:
+    for cmd in ["xdg-open"]:
         if shutil.which(cmd) is None:
             missing_commands.append(cmd)
 
@@ -121,9 +121,10 @@ def log_linux_setup_guidance():
         _log(f"  - {msg}")
 
     _log("Install guidance:")
-    _log("  - Debian/Ubuntu: sudo apt install libgtk-3-0 libwebkit2gtk-4.1-0 xdg-utils policykit-1")
-    _log("  - Fedora: sudo dnf install gtk3 webkit2gtk4.1 xdg-utils polkit")
-    _log("  - Arch: sudo pacman -S gtk3 webkit2gtk xdg-utils polkit")
+    _log("  - Debian/Ubuntu: sudo apt install --no-install-recommends libgtk-3-0 libwebkit2gtk-4.1-0 xdg-utils")
+    _log("  - Fedora: sudo dnf install gtk3 webkit2gtk4.1 xdg-utils")
+    _log("  - Arch: sudo pacman -S gtk3 webkit2gtk xdg-utils")
+    _log("Optional: install policykit only if your distro/updater flow needs elevated auth prompts.")
     _log("After installing dependencies, restart DeepSeek Desktop.")
 
 # Windows-specific imports for dark titlebar
