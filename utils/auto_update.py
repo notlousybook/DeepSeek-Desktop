@@ -49,7 +49,7 @@ def safe_print(text: str):
         print(f"[Encoding Error: {str(e)}]")
 
 # --- Configuration ---
-APP_NAME = "DeepSeekChat.exe"
+APP_NAME = "DeepSeekChat.exe" if platform.system() == "Windows" else "DeepSeekChat"
 REPO_URL = "https://api.github.com/repos/LousyBook94/DeepSeek-Desktop/releases/latest"
 VERSION_FILE = "version.txt"
 TEMP_DIR = os.path.join(tempfile.gettempdir(), "DeepSeekUpdate")
@@ -620,36 +620,44 @@ def main():
 
     # Check if application is running and close it if needed (only when update is needed)
     try:
-        subprocess.check_output(
-            f'tasklist /FI "IMAGENAME eq {APP_NAME}" /FO CSV | find "{APP_NAME}"',
-            shell=True,
-            stderr=subprocess.DEVNULL
-        )
-        logger.info(f"{APP_NAME} is running. Attempting to close...")
-        subprocess.run(
-            f'taskkill /F /IM "{APP_NAME}"',
-            shell=True,
-            check=True,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL
-        )
+        if platform.system() == "Windows":
+            subprocess.check_output(
+                f'tasklist /FI "IMAGENAME eq {APP_NAME}" /FO CSV | find "{APP_NAME}"',
+                shell=True,
+                stderr=subprocess.DEVNULL
+            )
+            logger.info(f"{APP_NAME} is running. Attempting to close...")
+            subprocess.run(
+                f'taskkill /F /IM "{APP_NAME}"',
+                shell=True,
+                check=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
+        else:
+            subprocess.check_output(["pgrep", "-f", APP_NAME], stderr=subprocess.DEVNULL)
+            logger.info(f"{APP_NAME} is running. Attempting to close...")
+            subprocess.run(["pkill", "-f", APP_NAME], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         time.sleep(3)
         logger.info(f"{APP_NAME} closed.")
-    except subprocess.CalledProcessError:
+    except (subprocess.CalledProcessError, FileNotFoundError):
         logger.info(f"{APP_NAME} is not running.")
     
     console.print(Panel(f"[bold yellow]Update available: {current_version} -> {latest_version}[/bold yellow]", border_style="yellow"))
 
-    # Find Windows asset
+    # Find platform-appropriate asset
     asset_to_download = None
+    target_markers = ["windows.zip"] if platform.system() == "Windows" else ["linux.zip", "linux.tar.gz", "linux"]
     if release_info and "assets" in release_info:
         for asset in release_info["assets"]:
-            if "windows.zip" in asset["name"].lower():
+            asset_name = asset["name"].lower()
+            if any(marker in asset_name for marker in target_markers):
                 asset_to_download = asset
                 break
-    
+
     if not asset_to_download:
-        console.print(Panel("[bold red]Error: Windows release asset not found.[/bold red]", border_style="red"))
+        wanted = "Windows" if platform.system() == "Windows" else "Linux"
+        console.print(Panel(f"[bold red]Error: {wanted} release asset not found.[/bold red]", border_style="red"))
         if auto_mode:
             sys.exit(1)
         return

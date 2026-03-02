@@ -4,6 +4,7 @@ import subprocess
 import sys
 import argparse
 import re  # For parsing version from workflow file
+import platform
 
 def get_version_from_workflow():
     """Extract version from GitHub workflow file"""
@@ -36,7 +37,9 @@ def build_app(fresh=False):
     if not os.path.exists("injection"):
         print("Error: injection directory not found!")
         return
-    if not os.path.exists("deepseek.ico"):
+
+    icon_exists = os.path.exists("deepseek.ico")
+    if platform.system() == "Windows" and not icon_exists:
         print("Error: deepseek.ico icon not found!")
         return
     
@@ -53,21 +56,22 @@ def build_app(fresh=False):
     os.makedirs(temp_dir, exist_ok=True)
     os.makedirs(dist_dir, exist_ok=True)
     
-    # Get absolute path to icon
-    icon_path = os.path.abspath("deepseek.ico")
-    
-    # PyInstaller command with absolute icon path
+    # Get absolute path to icon when available
+    icon_path = os.path.abspath("deepseek.ico") if icon_exists else None
+
+    # PyInstaller command
     cmd = [
         "pyinstaller",
         "--onefile",
-        "--windowed",  # Create Windows GUI app (no console)
-        f"--icon={icon_path}",
+        "--windowed",
         f"--distpath={dist_dir}",
         f"--workpath={temp_dir}",
         f"--specpath={temp_dir}",
         "-n", "DeepSeekChat",
         "main.py"
     ]
+    if icon_path:
+        cmd.insert(3, f"--icon={icon_path}")
     
     # Run PyInstaller
     result = subprocess.run(cmd, capture_output=True, text=True)
@@ -90,17 +94,19 @@ def build_app(fresh=False):
     # Define resources to copy to built directory
     resources_to_copy = [
         ("injection", "injection"),  # (source, destination)
-        ("deepseek.ico", "deepseek.ico")
     ]
+    if icon_exists:
+        resources_to_copy.append(("deepseek.ico", "deepseek.ico"))
 
     # --- Auto-Updater Logic ---
     updater_script_dir = os.path.join(os.path.dirname(__file__), "utils")
-    generated_exe_path = os.path.join(updater_script_dir, "auto-updater.exe")
-    final_exe_path = os.path.join(dist_dir, "auto-updater.exe")
+    updater_binary_name = "auto-updater.exe" if platform.system() == "Windows" else "auto-updater"
+    generated_exe_path = os.path.join(updater_script_dir, updater_binary_name)
+    final_exe_path = os.path.join(dist_dir, updater_binary_name)
 
-    # Check if auto-updater.exe already exists in utils folder or if --fresh flag is used
+    # Check if updater binary already exists in utils folder or if --fresh flag is used
     if fresh or not os.path.exists(generated_exe_path):
-        print(f"{'--fresh flag used. Regenerating' if fresh else 'auto-updater.exe not found in utils/.'} Generating auto-updater.exe now...")
+        print(f"{'--fresh flag used. Regenerating' if fresh else f'{updater_binary_name} not found in utils/.'} Generating {updater_binary_name} now...")
         build_updater_script = os.path.join(updater_script_dir, "build-updater.py")
         
         if not os.path.exists(build_updater_script):
@@ -112,26 +118,26 @@ def build_app(fresh=False):
         
         result = subprocess.run([sys.executable, build_updater_script], capture_output=True, text=True)
         if result.returncode != 0:
-            print("Failed to build auto-updater.exe!")
+            print(f"Failed to build {updater_binary_name}!")
             print("Error:", result.stderr)
             return # Or handle error
         
-        print("auto-updater.exe generated successfully!")
+        print(f"{updater_binary_name} generated successfully!")
         # The build-updater.py script now places the exe directly in the utils directory
         # We need to copy it to the final build directory
         if not os.path.exists(generated_exe_path):
-            print("Critical Error: auto-updater.exe could not be found in utils directory after build process.")
+            print(f"Critical Error: {updater_binary_name} could not be found in utils directory after build process.")
             return
 
-    # Copy the generated auto-updater.exe from utils to the dist_dir
+    # Copy the generated updater binary from utils to dist_dir
     if os.path.exists(generated_exe_path):
         if not os.path.exists(final_exe_path):
             shutil.copy(generated_exe_path, final_exe_path)
-            print(f"Copied auto-updater.exe from utils to {dist_dir}")
+            print(f"Copied {updater_binary_name} from utils to {dist_dir}")
         else:
-            print(f"auto-updater.exe already exists at {final_exe_path}")
+            print(f"{updater_binary_name} already exists at {final_exe_path}")
     else:
-        print("Warning: auto-updater.exe was not found in utils directory.")
+        print(f"Warning: {updater_binary_name} was not found in utils directory.")
     
     # Copy resources
     for src, dest in resources_to_copy:
@@ -145,15 +151,22 @@ def build_app(fresh=False):
     
     print("\nBuild complete! Executable and resources are in ./built/ directory")
     
-    # Open the output directory in Explorer
-    os.startfile(os.path.abspath(dist_dir))
+    # Open output directory on supported platforms
+    dist_abs = os.path.abspath(dist_dir)
+    if platform.system() == "Windows":
+        os.startfile(dist_abs)
+    elif platform.system() == "Darwin":
+        subprocess.Popen(["open", dist_abs])
+    else:
+        if shutil.which("xdg-open"):
+            subprocess.Popen(["xdg-open", dist_abs])
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Build the DeepSeek Desktop application and its updater.")
     parser.add_argument(
         "--fresh",
         action="store_true",
-        help="Force regeneration of the auto-updater.exe."
+        help="Force regeneration of the updater binary."
     )
     args = parser.parse_args()
     build_app(fresh=args.fresh)
