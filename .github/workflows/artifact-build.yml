@@ -1,0 +1,67 @@
+name: Artifact Build
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build-artifacts:
+    name: Build (${{ matrix.target }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            target: windows
+            binary: DeepSeekChat.exe
+          - os: ubuntu-latest
+            target: linux
+            binary: DeepSeekChat
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Build app + updater artifacts
+        run: python build.py --fresh
+
+      - name: Verify expected binary exists
+        shell: bash
+        run: |
+          if [ ! -f "built/${{ matrix.binary }}" ]; then
+            echo "Expected built/${{ matrix.binary }} not found"
+            ls -la built || true
+            exit 1
+          fi
+
+      - name: Verify updater binary exists
+        shell: bash
+        run: |
+          if [ "${{ matrix.target }}" = "windows" ]; then
+            test -f built/auto-updater.exe
+          else
+            test -f built/auto-updater
+          fi
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: DeepSeekChat-${{ matrix.target }}
+          path: built/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 9

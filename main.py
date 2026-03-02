@@ -3,6 +3,8 @@ import os
 import argparse
 import sys
 import platform
+import shutil
+import ctypes.util
 import datetime
 import base64
 import io
@@ -75,6 +77,54 @@ def _log(msg: str):
     
     # Always print to console for visibility with safe printing
     safe_print(msg)
+
+def _linux_dependency_help_messages():
+    """Detect Linux runtime dependencies and return user-friendly install guidance."""
+    if platform.system() != "Linux":
+        return []
+
+    messages = []
+    missing_commands = []
+    for cmd in ["xdg-open", "pkexec"]:
+        if shutil.which(cmd) is None:
+            missing_commands.append(cmd)
+
+    if missing_commands:
+        messages.append(
+            "Missing helper commands: "
+            + ", ".join(missing_commands)
+            + ". Install desktop integration tools (examples below)."
+        )
+
+    webkit_lib = ctypes.util.find_library("webkit2gtk-4.1") or ctypes.util.find_library("webkit2gtk-4.0")
+    gtk_lib = ctypes.util.find_library("gtk-3")
+    if not webkit_lib or not gtk_lib:
+        messages.append(
+            "WebView runtime libraries not detected (GTK3/WebKit2GTK). "
+            "The app window may fail to open until these are installed."
+        )
+
+    return messages
+
+def log_linux_setup_guidance():
+    """Log Linux dependency checks and distro-specific installation hints."""
+    if platform.system() != "Linux":
+        return
+
+    messages = _linux_dependency_help_messages()
+    if not messages:
+        _log("Linux dependency check: required runtime components look available.")
+        return
+
+    _log("Linux dependency check found missing components:")
+    for msg in messages:
+        _log(f"  - {msg}")
+
+    _log("Install guidance:")
+    _log("  - Debian/Ubuntu: sudo apt install libgtk-3-0 libwebkit2gtk-4.1-0 xdg-utils policykit-1")
+    _log("  - Fedora: sudo dnf install gtk3 webkit2gtk4.1 xdg-utils polkit")
+    _log("  - Arch: sudo pacman -S gtk3 webkit2gtk xdg-utils polkit")
+    _log("After installing dependencies, restart DeepSeek Desktop.")
 
 # Windows-specific imports for dark titlebar
 if platform.system() == "Windows":
@@ -568,7 +618,7 @@ def launch_auto_updater():
         ]
         
         # Define possible updater names
-        executable_names = ['auto-updater.exe']
+        executable_names = ['auto-updater.exe'] if platform.system() == "Windows" else ['auto-updater']
         script_names = ['auto-updater.py', 'auto_update.py']
         
         # Check for executable first
@@ -597,18 +647,17 @@ def launch_auto_updater():
                 env = os.environ.copy()
                 env['PYTHONIOENCODING'] = 'utf-8'
                 env['PYTHONLEGACYWINDOWSSTDIO'] = '0'  # Ensure UTF-8 stdio on Windows
+                popen_kwargs = {"env": env}
+                if platform.system() == "Windows":
+                    popen_kwargs["creationflags"] = subprocess.CREATE_NEW_CONSOLE
                 
                 if updater_type == 'executable':
                     # Launch executable with UTF-8 environment
-                    subprocess.Popen([updater_path], 
-                                   creationflags=subprocess.CREATE_NEW_CONSOLE,
-                                   env=env)
+                    subprocess.Popen([updater_path], **popen_kwargs)
                     _log(f"Launched auto-updater executable: {updater_path}")
                 else:  # script
                     # Launch Python script with appropriate flags and UTF-8 environment
-                    subprocess.Popen([sys.executable, updater_path, '--auto', '--debug'], 
-                                   creationflags=subprocess.CREATE_NEW_CONSOLE,
-                                   env=env)
+                    subprocess.Popen([sys.executable, updater_path, '--auto', '--debug'], **popen_kwargs)
                     _log(f"Launched auto-updater script: {updater_path}")
             except Exception as launch_error:
                 error_msg = f"Failed to launch auto-updater: {launch_error}"
@@ -717,6 +766,8 @@ def main():
     
     global VERBOSE_LOGS
     VERBOSE_LOGS = not release_mode
+
+    log_linux_setup_guidance()
     
     app = DeepSeekApp(release_mode=release_mode)
     app.run()

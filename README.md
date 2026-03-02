@@ -33,11 +33,26 @@ A cozy desktop wrapper for DeepSeek Chat — smoother, prettier, and nice to use
 ## Installation
 
 1. Grab the latest release from the [Releases page](https://github.com/notlousybook/DeepSeek-Desktop/releases)
-2. Download `DeepSeekChat-windows.zip`
+2. Download the package for your OS (`DeepSeekChat-windows.zip` or Linux build artifact)
 3. Extract it somewhere nice
-4. Run `DeepSeekChat.exe`
+4. Run the app binary (`DeepSeekChat.exe` on Windows, `DeepSeekChat` on Linux)
 
 The app will keep itself updated automatically — you'll get a friendly notification when there's something new :3
+
+### Linux dependencies
+
+If the app opens but shows errors (or no window), install WebKit/GTK runtime packages:
+
+```bash
+# Debian/Ubuntu
+sudo apt install libgtk-3-0 libwebkit2gtk-4.1-0 xdg-utils policykit-1
+
+# Fedora
+sudo dnf install gtk3 webkit2gtk4.1 xdg-utils polkit
+
+# Arch
+sudo pacman -S gtk3 webkit2gtk xdg-utils polkit
+```
 
 ---
 
@@ -108,7 +123,8 @@ By default, it'll just follow your Windows theme.
 - [x] Dark titlebar support
 - [x] Keyboard shortcuts
 - [ ] Custom themes (pick your own colors!)
-- [ ] macOS and Linux builds
+- [ ] macOS build
+- [x] Linux support improvements
 - [ ] System tray integration
 
 ---
